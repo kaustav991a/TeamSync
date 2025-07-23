@@ -1,0 +1,55 @@
+<!-- logonWrapper.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>TeamSync | Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body class="login-page">
+    <div class="login-container"
+        style="background: url(images/istockphoto-1667448660-1024x1024.jpg) no-repeat center center; background-size: cover !important;">
+        <div class="login-inner">
+            <h2>Login</h2>
+            <form id="loginForm">
+                <input type="text" id="username" placeholder="Username" required />
+                <input type="password" id="password" placeholder="Password" required />
+                <button type="submit">Login</button>
+            </form>
+            <p id="loginError" class="error-message"></p>
+        </div>
+    </div>
+
+    <script>
+        const users = {
+            suman: { role: "admin", password: "suman123" },
+            kaustav: { role: "user", password: "kaustavpass" },
+            ali: { role: "user", password: "alipass" },
+            arunisha: { role: "user", password: "arunishapass" },
+            debasish: { role: "user", password: "debasishpass" },
+        };
+
+        document.getElementById("loginForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+            const username = document.getElementById("username").value.trim().toLowerCase();
+            const password = document.getElementById("password").value.trim();
+            const user = users[username];
+
+            if (user && user.password === password) {
+                const safeUser = {
+                    name: username.replace(/[^a-z0-9]/gi, ''),
+                    role: user.role
+                };
+                sessionStorage.setItem("currentUser", JSON.stringify(safeUser));
+                window.location.href = "index.html";
+            } else {
+                document.getElementById("loginError").textContent = "Invalid username or password.";
+            }
+        });
+    </script>
+</body>
+
+</html>

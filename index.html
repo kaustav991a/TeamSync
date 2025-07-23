@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>TeamSync | Task Logger</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body class="mainpage"
+    style="background: url(images/istockphoto-1667448660-1024x1024.jpg) no-repeat center center; background-size: cover !important;">
+
+    <div id="appSection" class="hidden">
+        <div class="dashboard-container">
+            <div class="button-container">
+                <h2 id="welcomeMessage"></h2>
+                <button id="addTaskBtn"><i class="fas fa-plus-circle"></i> Add Task</button>
+            </div>
+
+            <div class="table-wrapper">
+                <table id="taskTable">
+                    <thead>
+                        <tr>
+                            <th>Resource</th>
+                            <th>Status</th>
+                            <th>Project</th>
+                            <th>Priority</th>
+                            <th>Expected Time</th>
+                            <th>Total Time</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="taskTableBody"></tbody>
+                </table>
+            </div>
+
+            <div class="log-section">
+                <h3><i class="fa-solid fa-calendar"></i> Activity Log</h3>
+                <div id="logContainer"></div>
+            </div>
+        </div>
+    </div>
+    <div class="toggle-mode">
+        <label class="dark-toggle">
+            <input type="checkbox" id="darkModeToggle" />
+            <span>Dark <br />Mode</span>
+        </label>
+    </div>
+
+    <div id="exportControls">
+        <button id="exportCSVBtn"><i class="fas fa-file-csv"></i> Export Logs</button>
+    </div>
+
+    <div id="adminNotificationArea" style="opacity: 0; pointer-events: none;">
+    </div>
+
+    <div id="availableUsersPanel" class="admin-panel" style="opacity: 0; pointer-events: none;">
+        <h4><i class="fas fa-user-check"></i> Available Now</h4>
+        <ul id="availableUsersList">
+        </ul>
+    </div>
+    <div id="updateBar" class="update-bar">
+        <p><i class="fa-solid fa-arrows-rotate"></i> A new version is available.</p>
+        <button id="reloadBtn">Reload</button>
+    </div>
+    <script type="module" src="js/main.js"></script>
+    <!-- <script type="module" src="js/firebase.js"></script> -->
+    <script src="js/script.js"></script>
+</body>
+
+</html>

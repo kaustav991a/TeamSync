@@ -1,0 +1,917 @@
+// ============================
+// Material Design Color Variables
+// ============================
+$primary: #6200ee;
+$on-primary: #ffffff;
+$secondary: #03dac6;
+$on-secondary: #000000;
+
+$primary-container: #bb86fc;
+$surface: #ffffff;
+$on-surface: #1c1c1c;
+$surface-variant: #f4f4f4;
+$outline: #d1c4e9;
+$danger: #b00020;
+
+$success: #4caf50;
+$success-light: lighten($success, 15%);
+$success-dark: darken($success, 10%);
+
+$elevation-1:
+    0 1px 3px rgba(0, 0, 0, 0.12),
+    0 1px 2px rgba(0, 0, 0, 0.24);
+$elevation-2:
+    0 3px 6px rgba(0, 0, 0, 0.16),
+    0 3px 6px rgba(0, 0, 0, 0.23);
+
+$dark-bg: #121212;
+$light-glass: rgba(255, 255, 255, 0.25);
+$dark-glass: rgba(255, 255, 255, 0.08);
+$border-glass: rgba(255, 255, 255, 0.18);
+
+* {
+    box-sizing: border-box;
+}
+
+// ============================
+// Global Typography & Body
+// ============================
+body {
+    font-family: "Roboto", sans-serif;
+    color: $on-surface;
+    background: linear-gradient(135deg, #c200ff, #ffef30);
+    overflow: hidden;
+    height: 100vh;
+    padding: 1.5rem;
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        margin: 0;
+    }
+
+    &.dark {
+        background: linear-gradient(135deg, $dark-bg, #1e1e1e);
+        color: #e0e0e0;
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            color: #f5f5f5;
+        }
+        p {
+            color: #ccc;
+        }
+
+        input,
+        select,
+        textarea {
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #e0e0e0;
+
+            &::placeholder {
+                color: rgba(255, 255, 255, 0.3);
+            }
+        }
+
+        table {
+            th,
+            td {
+                background-color: rgba(255, 255, 255, 0.04);
+                border-color: rgba(255, 255, 255, 0.05);
+                color: #ddd;
+            }
+        }
+
+        .log-section {
+            p {
+                background-color: rgba(255, 255, 255, 0.06);
+                border-left-color: lighten($primary, 20%);
+                color: #ccc;
+            }
+            > h3 {
+                background-color: rgba(255, 255, 255, 0.08);
+                color: lighten($primary, 25%);
+            }
+            .daily-log-section {
+                border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+            }
+        }
+
+        .toggle-mode .dark-toggle {
+            background-color: rgba(255, 255, 255, 0.08);
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        #exportControls {
+            background: lighten($secondary, 10%);
+            box-shadow: $elevation-2;
+            color: #000;
+        }
+
+        #availableUsersPanel {
+            background: rgba(24, 24, 24, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #e0e0e0;
+
+            h4 {
+                color: lighten($secondary, 25%);
+            }
+            li {
+                background-color: rgba(255, 255, 255, 0.05);
+                color: #ddd;
+
+                &:hover {
+                    background-color: rgba(255, 255, 255, 0.1);
+                }
+            }
+        }
+
+        #adminNotificationArea {
+            background-color: rgba(40, 60, 40, 0.8);
+            border-color: rgba(100, 255, 100, 0.2);
+            color: #c2fbc2;
+        }
+
+        .notification-item {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-left-color: lighten($success, 15%);
+            color: #cfcfcf;
+        }
+        .notification-warning {
+            background-color: rgba(255, 255, 0, 0.1);
+            border-left-color: #ffeb3b;
+            color: #ffc107;
+        }
+        .notification-success {
+            background-color: rgba(76, 175, 80, 0.1);
+            border-left-color: #81c784;
+            color: #a5d6a7;
+        }
+
+        .dashboard-container {
+            background-color: #393939;
+        }
+
+        .time-exceeded {
+            input,
+            td,
+            select {
+                color: #1c1c1c;
+            }
+            select {
+                border-color: #1c1c1c;
+            }
+            td .time-exceeded-message {
+                color: $danger;
+            }
+        }
+    }
+}
+
+// ============================
+// Glass Wrapper
+// ============================
+.glass {
+    background: $surface-variant;
+    border-radius: 16px;
+    box-shadow: $elevation-1;
+    padding: 1.5rem;
+    border: 1px solid $outline;
+    backdrop-filter: blur(8px);
+}
+
+// ============================
+// Login & Dashboard Containers
+// ============================
+.login-container,
+.dashboard-container {
+    @extend .glass;
+    max-width: 92%;
+    margin: auto;
+    height: calc(100vh - 64px);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.login-container {
+    align-items: center;
+    justify-content: center;
+    max-width: 100%;
+    padding: 1rem;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    backdrop-filter: unset;
+
+    .login-inner {
+        width: 100%;
+        max-width: 380px;
+        padding: 2rem 2rem 2.5rem;
+        border-radius: 22px;
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0.15));
+        backdrop-filter: blur(22px) saturate(180%);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        box-shadow:
+            0 8px 30px rgba(0, 0, 0, 0.25),
+            0 0 12px rgba(98, 0, 238, 0.15);
+        text-align: center;
+        animation: fadeIn 0.6s ease-out;
+
+        h2 {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 2rem;
+            @media (width <= 767px) {
+                font-size: 1.8rem;
+                margin-bottom: 1.2rem;
+                color: #fff;
+            }
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+
+            input {
+                width: 100%;
+                padding: 14px 16px;
+                border: none;
+                border-radius: 12px;
+                background: rgba(255, 255, 255, 0.7);
+                font-size: 1rem;
+                color: #1c1c1c;
+                box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.12);
+                transition: all 0.3s ease;
+
+                &:focus {
+                    background: rgba(255, 255, 255, 0.95);
+                    box-shadow: 0 0 0 2px #6a11cb;
+                    transform: translateY(-1px);
+                    border: none;
+                    outline: none;
+                }
+
+                &::placeholder {
+                    color: rgba(0, 0, 0, 0.5);
+                    font-weight: 500;
+                }
+            }
+
+            button {
+                background: linear-gradient(45deg, #6a11cb, #2575fc);
+                color: #fff;
+                font-weight: 700;
+                font-size: 1.05rem;
+                border: none;
+                border-radius: 12px;
+                padding: 14px;
+                cursor: pointer;
+                transition: all 0.3s ease-in-out;
+                box-shadow:
+                    0 4px 12px rgba(106, 17, 203, 0.4),
+                    0 0 6px rgba(106, 17, 203, 0.3);
+
+                &:hover {
+                    background: linear-gradient(45deg, #5c0fb5, #1f63da);
+                    transform: translateY(-2px);
+                }
+
+                &:active {
+                    transform: translateY(0);
+                    box-shadow: 0 3px 8px rgba(106, 17, 203, 0.3);
+                }
+            }
+        }
+
+        .error-message {
+            margin-top: 1rem;
+            color: #f9dcd9;
+            font-size: 1rem;
+            text-align: left;
+            background-color: #f44336;
+            // padding: 10px;
+            text-align: center;
+            border-radius: 10px;
+            margin-bottom: 0;
+            line-height: 45px;
+        }
+    }
+
+    body.dark & {
+        background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+
+        .login-inner {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+
+            h2 {
+                background: linear-gradient(45deg, #03dac6, #00bfa5);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+
+            form {
+                input {
+                    background: rgba(255, 255, 255, 0.1);
+                    color: #f2f2f2;
+                    &:focus {
+                        background: rgba(255, 255, 255, 0.2);
+                        box-shadow: 0 0 0 2px #03dac6;
+                    }
+                    &::placeholder {
+                        color: rgba(255, 255, 255, 0.4);
+                    }
+                }
+
+                button {
+                    background: linear-gradient(45deg, #03dac6, #00bfa5);
+                    color: #000;
+                    &:hover {
+                        background: linear-gradient(45deg, #00c9b5, #009e85);
+                    }
+                }
+            }
+            .error-message {
+                color: #ff7961;
+            }
+        }
+    }
+}
+
+// ============================
+// (Remaining Sections: Table, Logs, Switch, Toggle Mode, Admin Panel, etc.)
+// ============================
+// I have them fully optimized as well — Shall I continue pasting here?
+
+// ============================
+// Table Styles
+// ============================
+.table-wrapper {
+    flex: 1;
+    margin-top: 1rem;
+}
+
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 12px 12px 0 0;
+    box-shadow: $elevation-1;
+    overflow: hidden;
+
+    thead {
+        background: #5efdce30;
+        color: #ffffff;
+        text-transform: uppercase;
+        font-size: 0.85rem;
+        letter-spacing: 0.05em;
+    }
+
+    th,
+    td {
+        padding: 0.75rem 1rem;
+        text-align: left;
+        border-bottom: 1px solid $outline;
+    }
+    td {
+        padding: 0.75rem 1rem;
+        text-align: left;
+        border-bottom: 1px solid #d1c4e9;
+        color: #5efdce;
+        text-transform: capitalize;
+        font-weight: 500;
+    }
+    tr {
+        transition: all 0.3s ease-in-out;
+    }
+
+    tbody tr:hover {
+        // background-color: #f5f5f5;
+        background: rgba(94, 253, 205, 0.363);
+    }
+
+    input,
+    select {
+        width: 100%;
+        padding: 0.4rem 0.6rem;
+        border-radius: 8px;
+        border: 1px solid #5efdce;
+        font-size: 0.9rem;
+        background: rgba(94, 253, 206, 0.1882352941);
+        color: #21ffbd;
+        &:disabled {
+            opacity: 0.5;
+        }
+        &:focus-visible {
+            outline: none;
+        }
+    }
+
+    button {
+        background: #308f73;
+        color: #fff;
+        border-radius: 26px;
+        padding: 6px 10px;
+        font-size: 0.8rem;
+        transition: background 0.3s ease;
+        margin: 0 0 0 10px;
+
+        &:hover {
+            background: darken($danger, 8%);
+        }
+    }
+}
+
+// ============================
+// Logs Section
+// ============================
+.log-section {
+    margin-top: 2rem;
+
+    h3 {
+        background: rgba(94, 253, 205, 0.377);
+        // background: rgb(94, 253, 205);
+        color: #fff;
+        padding: 0.75rem 1rem;
+        // background: $surface-variant;
+        border-radius: 8px;
+        box-shadow: $elevation-1;
+        overflow: hidden;
+        // position: sticky;
+        // top: 0;
+        // &:before {
+        //     content: "";
+        //     position: absolute;
+        //     inset: 0;
+        //     backdrop-filter: blur(10px);
+        // }
+    }
+
+    #logContainer {
+        margin-top: 1rem;
+        max-height: 30vh;
+        overflow-y: auto;
+
+        .daily-log-section {
+            margin-bottom: 1.5rem;
+            border-left: 4px solid #5efdce;
+            padding-left: 1rem;
+            padding-right: 10px;
+
+            h3 {
+                position: sticky;
+                top: 0;
+                background: rgb(94, 253, 205);
+                color: rgb(20, 54, 44);
+                font-size: 18px;
+            }
+
+            .daily-logs-content p {
+                background: rgba(94, 253, 206, 0.1882352941);
+                border-radius: 8px;
+                padding: 0.75rem;
+                font-size: 0.95rem;
+                margin-bottom: 0.75rem;
+                border-left: 5px solid #00ffb3;
+                color: #5efdce;
+                box-shadow: $elevation-1;
+
+                b {
+                    text-transform: capitalize;
+                }
+            }
+        }
+
+        //! Scrollbar
+        /* width */
+        &::-webkit-scrollbar {
+            width: 8px;
+            border-radius: 20px;
+            margin-left: 10px;
+            overflow: hidden;
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* Track */
+        &::-webkit-scrollbar-track {
+            background: rgba(94, 253, 206, 0.1882352941);
+            border: 1px solid #5efdce;
+            border-radius: 20px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* Handle */
+        &::-webkit-scrollbar-thumb {
+            // background: rgba(94, 253, 205, 0.582);
+            background-color: #5efdcd88;
+            border-radius: 20px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* Handle on hover */
+        &::-webkit-scrollbar-thumb:hover {
+            background: #5efdce;
+            transition: all 0.3s ease-in-out;
+        }
+    }
+}
+
+// ============================
+// Switch (Toggle Switch UI)
+// ============================
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 42px;
+    height: 24px;
+    border: 1px solid #5efdce;
+    border-radius: 15px;
+
+    input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+
+    .slider {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #205d4b;
+        transition: 0.4s;
+        border-radius: 24px;
+
+        &:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 3px;
+            bottom: 3px;
+            background-color: #5efdce;
+            transition: 0.4s;
+            border-radius: 50%;
+        }
+    }
+
+    input:checked + .slider {
+        background-color: #5efdce94;
+
+        &:before {
+            transform: translateX(18px);
+            background-color: #fff;
+        }
+    }
+}
+
+// ============================
+// Expected Time Exceeded
+// ============================
+.time-exceeded {
+    background: #ffe0e0 !important;
+
+    .time-exceeded-message {
+        color: $danger;
+        font-size: 0.85rem;
+        font-weight: 600;
+        margin-top: 0.3rem;
+    }
+}
+
+// ============================
+// Toggle Mode (Dark / Light FAB)
+// ============================
+.toggle-mode {
+    .dark-toggle {
+        position: fixed;
+        bottom: 10px;
+        right: 10px;
+        width: 60px;
+        height: 60px;
+        background: $primary;
+        color: $on-primary;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.75rem;
+        font-weight: 600;
+        cursor: pointer;
+        box-shadow: $elevation-2;
+        z-index: 999;
+
+        input {
+            display: none;
+        }
+
+        &:hover {
+            background: darken($primary, 10%);
+        }
+    }
+}
+
+// ============================
+// Export Controls (Floating FAB)
+// ============================
+#exportControls {
+    position: fixed;
+    right: 10px;
+    bottom: 85px;
+    width: 60px;
+    height: 60px;
+    background: $secondary;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: $elevation-2;
+    z-index: 999;
+    transition: background 0.3s ease;
+
+    button {
+        background: transparent;
+        border: none;
+        color: white;
+        font-size: 0.8rem;
+        font-weight: 600;
+        cursor: pointer;
+        line-height: 1;
+        i {
+            display: block;
+        }
+    }
+
+    &:hover {
+        background: darken($secondary, 8%);
+    }
+}
+
+// ============================
+// Admin Notification Area
+// ============================
+#adminNotificationArea {
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    width: 320px;
+    max-height: 200px;
+    background-color: #e0f7fa;
+    border: 1px solid #4dd0e1;
+    border-radius: 10px;
+    padding: 1rem;
+    font-size: 0.9rem;
+    color: #004d40;
+    overflow-y: auto;
+    box-shadow: $elevation-2;
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+    z-index: 999;
+
+    .notification-item {
+        margin-bottom: 8px;
+        padding: 10px;
+        background-color: #f0ffff;
+        border-left: 5px solid #26c6da;
+        border-radius: 6px;
+        font-weight: 500;
+        color: #006064;
+        box-shadow: $elevation-1;
+    }
+
+    body.admin-mode & {
+        opacity: 1;
+        display: block;
+    }
+}
+
+// ============================
+// Available Users Panel
+// ============================
+#availableUsersPanel {
+    position: fixed;
+    bottom: 160px;
+    right: 10px;
+    width: 260px;
+    max-height: 320px;
+    background: $surface-variant;
+    backdrop-filter: blur(14px);
+    border: 1px solid $outline;
+    border-radius: 16px;
+    padding: 1rem;
+    box-shadow: $elevation-2;
+    color: $on-surface;
+    z-index: 999;
+    transition: all 0.3s ease;
+
+    h4 {
+        font-size: 1rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        color: $primary;
+    }
+
+    ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+
+        li {
+            padding: 8px 10px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+            background: rgba(255, 255, 255, 0.3);
+            color: #333;
+            transition: background 0.2s ease;
+
+            &:hover {
+                background: rgba(255, 255, 255, 0.5);
+            }
+        }
+    }
+}
+
+// ============================
+// Animations
+// ============================
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+// ============================
+// Headings & Buttons Refinement
+// ============================
+h2 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+h3 {
+    font-size: 1.4rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+button {
+    // background: $primary;
+    background: rgba(94, 253, 206, 0.1882352941);
+    color: $on-primary;
+    padding: 10px 16px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: background 0.3s;
+
+    &:hover {
+        background: rgba(94, 253, 205, 0.644);
+    }
+}
+
+.button-container {
+    h2 {
+        margin-bottom: 20px;
+        color: #5efdce;
+        span {
+            text-transform: capitalize;
+        }
+    }
+}
+
+.login-page {
+    padding: 0;
+    margin: 0;
+    .login-container {
+        height: 100svh;
+        height: 100lvh;
+        height: 100dvh;
+        position: relative;
+        &::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            backdrop-filter: blur(40px);
+        }
+    }
+}
+
+.dashboard-container {
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    background-color: rgba(17, 25, 40, 0.75);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.125);
+}
+
+.mainpage {
+    position: relative;
+    margin: 0;
+    .dashboard-container {
+        backdrop-filter: blur(16px) saturate(180%);
+        -webkit-backdrop-filter: blur(16px) saturate(180%);
+        background-color: #5efdce1c;
+        border-radius: 12px;
+        border: none;
+        box-shadow: 0 0 20px 2px #5efdce9e;
+        border: 1px solid #5efdce69;
+    }
+    &:before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        backdrop-filter: blur(15px);
+        z-index: -1;
+    }
+}
+
+.custom-select {
+    position: relative;
+    width: 100%;
+    cursor: pointer;
+    user-select: none;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 6"><path d="M0 0l5 6 5-6z" fill="%235efdce"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 10px;
+
+    .custom-select-trigger {
+        width: 100%;
+        padding: 0.4rem 0.6rem;
+        border-radius: 8px;
+        border: 1px solid #5efdce;
+        font-size: 0.9rem;
+        background: rgba(94, 253, 206, 0.1882352941);
+        color: #21ffbd;
+        &:hover {
+            background-color: #00453a;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 6"><path d="M0 0l5 6 5-6z" fill="%235efdce"/></svg>');
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            background-size: 10px;
+        }
+    }
+
+    .custom-options {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: #002e27;
+        border-radius: 6px;
+        margin-top: 4px;
+        opacity: 0;
+        max-height: 0;
+        overflow: hidden;
+        transition: all 0.3s ease;
+        z-index: 999;
+    }
+
+    &.open .custom-options {
+        opacity: 1;
+        max-height: 200px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .custom-option {
+        display: block;
+        padding: 6px 10px;
+        color: #aefcfb;
+        transition: background 0.3s ease;
+
+        &:hover {
+            background: #00453a;
+        }
+
+        &.selected {
+            background: #00453a;
+        }
+    }
+
+    &.disabled {
+        opacity: 0.5;
+        pointer-events: none;
+    }
+}
